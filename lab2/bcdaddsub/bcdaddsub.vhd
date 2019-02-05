@@ -10,8 +10,8 @@ entity bcdaddsub is
         -- sw 9, key 9, key 1
 		ADD, LATCH1, LATCH2 : in STD_LOGIC;
 		-- Outputs
-        SEG0 : out STD_LOGIC_VECTOR (6 downto 0) := "0000000"
-        SEG1 : out STD_LOGIC_VECTOR (6 downto 0) := "0000000"
+        SEG0 : out STD_LOGIC_VECTOR (6 downto 0) := "0000000";
+        SEG1 : out STD_LOGIC_VECTOR (6 downto 0) := "0000000";
         SEG2 : out STD_LOGIC_VECTOR (1 downto 0) := "00"
 	);
 end bcdaddsub;
@@ -41,10 +41,10 @@ architecture a of bcdaddsub is
     signal out2 : STD_LOGIC := '0';
 
 
-    fucntion bcdToSeven(bcd : std_logic_vector(3 downto 0))
+    function bcdToSeven(bcd : std_logic_vector(3 downto 0))
     return std_logic_vector is
 
-        variable seven_seg : std_logic_vector(6 downto 0);
+        variable seven_seg : std_logic_vector(6 downto 0) := "000000";
 
         begin
             case bcd is
@@ -67,10 +67,10 @@ architecture a of bcdaddsub is
     function addsub( bcd0 : std_logic_vector(3 downto 0); bcd1 : std_logic_vector(3 downto 0); carryin : std_logic; addTF : std_logic)
     return std_logic_vector is
 
-        variable bcd1comp : std_logic_vector(4 downto 0);
-        variable sumtemp0 : std_logic_vector(4 downto 0);
-        variable sumtemp1 : std_logic_vector(4 downto 0);
-        variable numout : std_logic_vector(4 downto 0);
+        variable bcd1comp : std_logic_vector(4 downto 0) := "00000";
+        variable sumtemp0 : std_logic_vector(4 downto 0) := "00000";
+        variable sumtemp1 : std_logic_vector(4 downto 0) := "00000";
+        variable numout : std_logic_vector(4 downto 0) := "00000";
 
         begin
             if addTF = '0' then
@@ -101,7 +101,7 @@ architecture a of bcdaddsub is
                 numout <= sumtemp0;
             end if;
 
-            return numout
+            return numout;
         end;
 
     begin
