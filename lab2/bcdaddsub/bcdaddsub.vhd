@@ -107,17 +107,19 @@ architecture a of bcdaddsub is
             -- assign digit 0 to bcd variables on trigger
             bcd00 <= NUMIN(3 downto 0);
             bcd01 <= NUMIN(7 downto 4);
-            SEG4 <= bcdToSeven(bcd00);
-            SEG5 <= bcdToSeven(bcd01);
-		end if;
+        end if;
+        
+        SEG4 <= bcdToSeven(bcd00);
+        SEG5 <= bcdToSeven(bcd01);
 		
         if rising_edge(LATCH2) then
             -- assign digit 1 to bcd variables on trigger
             bcd10 <= NUMIN(3 downto 0);
             bcd11 <= NUMIN(7 downto 4);
-            SEG2 <= bcdToSeven(bcd10);
-            SEG3 <= bcdToSeven(bcd11);
-		end if;
+        end if;
+        
+        SEG2 <= bcdToSeven(bcd10);
+        SEG3 <= bcdToSeven(bcd11);
         
         if (ADD = '1') then
             temp0 <= addsub(bcd00, bcd10, '0', '1');
