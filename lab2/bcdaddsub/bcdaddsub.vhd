@@ -12,7 +12,11 @@ entity bcdaddsub is
 		-- Outputs
         SEG0 : out STD_LOGIC_VECTOR (6 downto 0) := "0000000";
         SEG1 : out STD_LOGIC_VECTOR (6 downto 0) := "0000000";
-        SEG2 : out STD_LOGIC_VECTOR (1 downto 0) := "00"
+        SEG2 : out STD_LOGIC_VECTOR (6 downto 0) := "0000000";
+        SEG3 : out STD_LOGIC_VECTOR (6 downto 0) := "0000000";
+        SEG4 : out STD_LOGIC_VECTOR (6 downto 0) := "0000000";
+        SEG5 : out STD_LOGIC_VECTOR (6 downto 0) := "0000000";
+        OVERFLOW : out STD_LOGIC := '0'
 	);
 end bcdaddsub;
 
@@ -36,9 +40,6 @@ architecture a of bcdaddsub is
 
     --sev seg digit 1
     signal out1 : STD_LOGIC_VECTOR (3 downto 0) := "0000";
-
-    --overblow for sev seg
-    signal out2 : STD_LOGIC := '0';
 
 
     function bcdToSeven(bcd : std_logic_vector(3 downto 0))
@@ -99,19 +100,23 @@ architecture a of bcdaddsub is
         end;
 
     begin
-    process(NUMIN, ADD, LATCH1, LATCH2, bcd00, bcd01, bcd10, bcd11, temp0, temp1, out0, out1, out2) is
+    process(NUMIN, ADD, LATCH1, LATCH2, bcd00, bcd01, bcd10, bcd11, temp0, temp1, out0, out1) is
     
 	begin
         if rising_edge(LATCH1) then
             -- assign digit 0 to bcd variables on trigger
             bcd00 <= NUMIN(3 downto 0);
             bcd01 <= NUMIN(7 downto 4);
+            SEG4 <= bcdToSeven(bcd00);
+            SEG5 <= bcdToSeven(bcd01);
 		end if;
 		
         if rising_edge(LATCH2) then
             -- assign digit 1 to bcd variables on trigger
             bcd10 <= NUMIN(3 downto 0);
-			bcd11 <= NUMIN(7 downto 4);
+            bcd11 <= NUMIN(7 downto 4);
+            SEG2 <= bcdToSeven(bcd10);
+            SEG3 <= bcdToSeven(bcd11);
 		end if;
         
         if (ADD = '1') then
@@ -121,7 +126,7 @@ architecture a of bcdaddsub is
             temp1 <= addsub(bcd01, bcd11, temp0(4), '1');
             out1 <= temp1(3 downto 0);
             
-            out2 <= temp1(4);
+            OVERFLOW <= temp1(4);
 
         else 
             temp0 <= addsub(bcd00, bcd10, '1', '0');
@@ -130,17 +135,11 @@ architecture a of bcdaddsub is
             temp1 <= addsub(bcd01, bcd11, temp0(4), '0');
             out1 <= temp1(3 downto 0);
             
-            out2 <= '0';
+            OVERFLOW <= '0';
         end if;
         
         SEG0 <= bcdToSeven(out0);
         SEG1 <= bcdToSeven(out1);
-
-        if (out2 = '0') then
-            SEG2 <= "11";
-        else
-            SEG2 <= "00";
-        end if;
 
 	end process;
 			
