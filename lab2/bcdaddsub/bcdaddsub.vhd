@@ -82,7 +82,7 @@ architecture a of bcdaddsub is
                     when "1000" => bcd1comp:="00001";
                     when others => bcd1comp:="00000";
                 end case;
-
+                
             else
                 bcd1comp := ('0' & bcd1);
             end if;
@@ -113,17 +113,29 @@ architecture a of bcdaddsub is
             bcd10 <= NUMIN(3 downto 0);
 			bcd11 <= NUMIN(7 downto 4);
 		end if;
-		
-        temp0 <= addsub(bcd00, bcd10, '0', ADD);
-        out0 <= temp0(3 downto 0);
-		  
-        temp1 <= addsub(bcd01, bcd11, temp0(4), ADD);
-        out1 <= temp1(3 downto 0);
-		  
-        out2 <= temp1(4);
+        
+        if (ADD = '1') then
+            temp0 <= addsub(bcd00, bcd10, '0', '1');
+            out0 <= temp0(3 downto 0);
+            
+            temp1 <= addsub(bcd01, bcd11, temp0(4), '1');
+            out1 <= temp1(3 downto 0);
+            
+            out2 <= temp1(4);
 
-        SEG0 <= bcdToSeven(out0);
-        SEG1 <= bcdToSeven(out1);
+            SEG0 <= bcdToSeven(out0);
+            SEG1 <= bcdToSeven(out1);
+        else 
+            temp0 <= addsub(bcd00, bcd10, '1', '0');
+            out0 <= temp0(3 downto 0);
+            
+            temp1 <= addsub(bcd01, bcd11, temp0(4), '0');
+            out1 <= temp1(3 downto 0);
+            
+            out2 <= '0';
+
+            SEG0 <= bcdToSeven(out0);
+            SEG1 <= bcdToSeven(out1);
 		  
         if (out2 = '0') then
             SEG2 <= "11";
