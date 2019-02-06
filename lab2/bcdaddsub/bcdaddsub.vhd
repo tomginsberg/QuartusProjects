@@ -123,8 +123,6 @@ architecture a of bcdaddsub is
             
             out2 <= temp1(4);
 
-            SEG0 <= bcdToSeven(out0);
-            SEG1 <= bcdToSeven(out1);
         else 
             temp0 <= addsub(bcd00, bcd10, '1', '0');
             out0 <= temp0(3 downto 0);
@@ -133,10 +131,11 @@ architecture a of bcdaddsub is
             out1 <= temp1(3 downto 0);
             
             out2 <= '0';
+        end if;
+        
+        SEG0 <= bcdToSeven(out0);
+        SEG1 <= bcdToSeven(out1);
 
-            SEG0 <= bcdToSeven(out0);
-            SEG1 <= bcdToSeven(out1);
-		  
         if (out2 = '0') then
             SEG2 <= "11";
         else
