@@ -16,6 +16,10 @@ architecture Behavioral of bcdclock is
     signal clk_min: STD_LOGIC;
     signal clk_hour: STD_LOGIC;
 
+    signal clk_sec_master: STD_LOGIC;
+    signal clk_min_master: STD_LOGIC;
+    signal clk_hour_master: STD_LOGIC;
+
     signal second: std_logic_vector (5 downto 0) := "000000";
     signal minute: std_logic_vector (5 downto 0) := "000000";
     signal hour: std_logic_vector (3 downto 0) := "1100";
@@ -137,9 +141,12 @@ architecture Behavioral of bcdclock is
         end if;
     end process;
     
-    process(clk_sec, second, clk_min, SETMODE, UPSEC)
+    process(clk_sec, second, clk_min, SETMODE, UPSEC, clk_sec_master)
     begin
-        if rising_edge(clk_sec) then
+
+        clk_sec_master <= UPSEC when (SETMODE = '1') else clk_sec;
+
+        if rising_edge(clk_sec_master) then
             if second < 59 then
                 second <= second + '1';
             else 
