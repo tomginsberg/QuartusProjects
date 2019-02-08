@@ -139,7 +139,7 @@ architecture Behavioral of bcdclock is
     
     process(clk_sec, second, clk_min, SETMODE, UPSEC)
     begin
-        if rising_edge(clk_sec) or (SETMODE = '1' and rising_edge(UPSEC)) then
+        if (clk_sec'event and clk_sec = '1') or (SETMODE = '1' and rising_edge(UPSEC)) then
             if second < 59 then
                 second <= second + '1';
             else 
@@ -151,7 +151,7 @@ architecture Behavioral of bcdclock is
 
     process(clk_min, minute, clk_hour, SETMODE, UPMIN)
     begin
-        if rising_edge(clk_min) or (SETMODE = '1' and rising_edge(UPMIN)) then
+        if (clk_min'event and clk_min = '1') or (SETMODE = '1' and rising_edge(UPMIN)) then
             if minute < 59 then
                 minute <= minute + '1';
             else 
@@ -163,7 +163,7 @@ architecture Behavioral of bcdclock is
 
     process(hour, clk_hour, SETMODE, UPHOUR)
     begin
-        if rising_edge(clk_hour) or (SETMODE = '1' and rising_edge(UPHOUR)) then
+        if (clk_hour'event and clk_hour = '1') or (SETMODE = '1' and rising_edge(UPHOUR)) then
             if hour < 12 then
                 hour <= hour + '1';
             else 
