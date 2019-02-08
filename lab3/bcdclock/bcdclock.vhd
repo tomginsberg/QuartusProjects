@@ -120,7 +120,7 @@ architecture Behavioral of bcdclock is
                 when "111001" => return "01010111";
                 when "111010" => return "01011000";
                 when "111011" => return "01011001";
-					 when others => return "00000000";
+				when others => return "00000000";
             end case;
         end;
 
@@ -137,9 +137,9 @@ architecture Behavioral of bcdclock is
         end if;
     end process;
     
-    process(clk_sec, second, clk_min)
+    process(clk_sec, second, clk_min, SETMODE, UPSEC)
     begin
-        if rising_edge(clk_sec) then
+        if rising_edge(clk_sec) or (SETMODE = '1' and rising_edge(UPSEC)) then
             if second < 59 then
                 second <= second + '1';
             else 
@@ -149,9 +149,9 @@ architecture Behavioral of bcdclock is
         end if;
     end process;
 
-    process(clk_min, minute, clk_hour)
+    process(clk_min, minute, clk_hour, SETMODE, UPMIN)
     begin
-        if rising_edge(clk_min) then
+        if rising_edge(clk_min) or (SETMODE = '1' and rising_edge(UPMIN)) then
             if minute < 59 then
                 minute <= minute + '1';
             else 
@@ -161,9 +161,9 @@ architecture Behavioral of bcdclock is
         end if;
     end process;
 
-    process(hour, clk_hour)
+    process(hour, clk_hour, SETMODE, UPHOUR)
     begin
-        if rising_edge(clk_hour) then
+        if rising_edge(clk_hour) or (SETMODE = '1' and rising_edge(UPHOUR)) then
             if hour < 12 then
                 hour <= hour + '1';
             else 
@@ -187,16 +187,6 @@ architecture Behavioral of bcdclock is
         HOUR0 <= bcdToSeven(hourbcd(3 downto 0));
         HOUR1 <= bcdToSeven(hourbcd(7 downto 4));
 
-    end process;
-
-
-    process(SETMODE, UPSEC, UPMIN, UPHOUR, clk_sec, clk_min, clk_hour)
-    begin
-        if SETMODE = '1' then 
-            clk_sec <= UPSEC;
-            clk_min <= UPMIN;
-            clk_hour <= UPHOUR;
-        end if;
     end process;
 
 end Behavioral;
