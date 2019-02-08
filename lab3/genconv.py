@@ -1,6 +1,6 @@
 
 
-template = "when sixbit is \"{}\" => return \"{}\";"
+template = "when \"{}\" => return \"{}\";"
 
 
 def binn(dec,n):
