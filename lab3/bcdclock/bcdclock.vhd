@@ -128,12 +128,10 @@ architecture Behavioral of bcdclock is
             end case;
         end;
     
-    clk_sec_master <= clk_sec when (SETMODE = '0') else UPSEC;
-    clk_min_master <= clk_sec when (SETMODE = '0') else UPMIN;
-    clk_hour_master <= clk_sec when (SETMODE = '0') else UPHOUR;
-
-    
     begin 
+	 clk_sec_master <= clk_sec when (SETMODE = '0') else UPSEC;
+    clk_min_master <= clk_min when (SETMODE = '0') else UPMIN;
+    clk_hour_master <= clk_hour when (SETMODE = '0') else UPHOUR;
     process(CLK_50, SETMODE, counter, clk_sec)
     begin
         if(CLK_50'event and CLK_50='1' and SETMODE = '0') then 
