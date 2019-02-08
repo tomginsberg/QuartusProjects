@@ -6,7 +6,7 @@ use IEEE.STD_LOGIC_UNSIGNED.all;
 entity bcdclock IS
 	port(
 		SETMODE, UPSEC, UPMIN, UPHOUR, CLK_50 :IN STD_LOGIC;
-		SEC0, SEC1, MIN0, MIN1, HOUR0, HOUR1 :OUT STD_LOGIC_VECTOR (6 downto 0)
+		SEC0, SEC1, MIN0, MIN1, HOUR0, HOUR1 :OUT STD_LOGIC_VECTOR (0 to 6)
 	);
 end bcdclock;
 
@@ -15,10 +15,6 @@ architecture Behavioral of bcdclock is
     signal clk_sec: STD_LOGIC;
     signal clk_min: STD_LOGIC;
     signal clk_hour: STD_LOGIC;
-
-    signal clk_sec_master: STD_LOGIC;
-    signal clk_min_master: STD_LOGIC;
-    signal clk_hour_master: STD_LOGIC;
 
     signal second: std_logic_vector (5 downto 0) := "000000";
     signal minute: std_logic_vector (5 downto 0) := "000000";
@@ -124,7 +120,6 @@ architecture Behavioral of bcdclock is
                 when "111001" => return "01010111";
                 when "111010" => return "01011000";
                 when "111011" => return "01011001";
-					when others => return "00000000";
             end case;
         end;
 
@@ -133,50 +128,46 @@ architecture Behavioral of bcdclock is
     begin
         if(CLK_50'event and CLK_50='1' and SETMODE = '0') then 
             if counter<25000000 then
-                counter <= counter + '1';
+                counter <= counter + 1;
             else 
-                counter <=(others => '0');
-                clk_sec <= not clk_sec;
+                counter <= 0;
+                clk <= not clk;
             end if;
         end if;
     end process;
     
-    process(clk_sec, second, clk_min, SETMODE, UPSEC, clk_sec_master)
+    process(clk_sec, second, clk_min)
     begin
-
-        --clk_sec_master <= UPSEC when (SETMODE = '1') else clk_sec;
-
         if rising_edge(clk_sec) then
-
             if second < 59 then
-                second <= second + '1';
+                second <= second + 1;
             else 
-                second <= (others => '0');
+                second <= 0;
                 clk_min <= not clk_min;
-            end if;
+            end if
         end if;
     end process;
 
-    process(clk_min, minute, clk_hour, SETMODE, UPMIN)
+    process(clk_min, minute, clk_hour)
     begin
         if rising_edge(clk_min) then
             if minute < 59 then
-                minute <= minute + '1';
+                minute <= minute + 1;
             else 
-                minute <= (others => '0');
+                minute <= 0;
                 clk_hour <= not clk_hour;
-            end if;
+            end if
         end if;
     end process;
 
-    process(hour, clk_hour, SETMODE, UPHOUR)
+    process(hour, clk_hour)
     begin
         if rising_edge(clk_hour) then
             if hour < 12 then
-                hour <= hour + '1';
+                minute <= minute + 1;
             else 
-                hour <= "0001";
-            end if;
+                hour <= 1;
+            end if
         end if;
     end process;
 
@@ -195,6 +186,16 @@ architecture Behavioral of bcdclock is
         HOUR0 <= bcdToSeven(hourbcd(3 downto 0));
         HOUR1 <= bcdToSeven(hourbcd(7 downto 4));
 
+    end process;
+
+
+    process(SETMODE, UPSEC, UPMIN, UPHOUR, clk_sec, clk_min, clk_hour)
+    begin
+        if SETMODE = '1' then 
+            clk_sec <= UPSEC;
+            clk_min <= UPMIN;
+            clk_hour <= UPHOUR;
+        end_if;
     end process;
 
 end Behavioral;

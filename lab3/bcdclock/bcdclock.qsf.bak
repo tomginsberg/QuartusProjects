@@ -54,34 +54,3 @@ set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -entity bcdaddsub -section_id Top
-set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -entity bcdaddsub -section_id Top
-set_global_assignment -name PARTITION_COLOR 16764057 -entity bcdaddsub -section_id Top
-set_location_assignment PIN_U7 -to LATCH1
-set_location_assignment PIN_AB12 -to ADD
-set_location_assignment PIN_W9 -to LATCH2
-set_location_assignment PIN_AA13 -to NUMIN[7]
-set_location_assignment PIN_AA14 -to NUMIN[6]
-set_location_assignment PIN_AB15 -to NUMIN[5]
-set_location_assignment PIN_AA15 -to NUMIN[4]
-set_location_assignment PIN_T12 -to NUMIN[3]
-set_location_assignment PIN_T13 -to NUMIN[2]
-set_location_assignment PIN_V13 -to NUMIN[1]
-set_location_assignment PIN_U13 -to NUMIN[0]
-set_location_assignment PIN_AB17 -to SEG2[1]
-set_location_assignment PIN_AA10 -to SEG2[0]
-set_location_assignment PIN_U22 -to SEG1[0]
-set_location_assignment PIN_AA17 -to SEG1[1]
-set_location_assignment PIN_AB18 -to SEG1[2]
-set_location_assignment PIN_AA18 -to SEG1[3]
-set_location_assignment PIN_AA19 -to SEG1[4]
-set_location_assignment PIN_AB20 -to SEG1[5]
-set_location_assignment PIN_AA20 -to SEG1[6]
-set_location_assignment PIN_AA22 -to SEG0[0]
-set_location_assignment PIN_Y21 -to SEG0[1]
-set_location_assignment PIN_Y22 -to SEG0[2]
-set_location_assignment PIN_W21 -to SEG0[3]
-set_location_assignment PIN_W22 -to SEG0[4]
-set_location_assignment PIN_V21 -to SEG0[5]
-set_location_assignment PIN_U21 -to SEG0[6]
-set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -entity bcdaddsub -section_id Top
