@@ -120,6 +120,7 @@ architecture Behavioral of bcdclock is
                 when "111001" => return "01010111";
                 when "111010" => return "01011000";
                 when "111011" => return "01011001";
+					 when others => return "00000000";
             end case;
         end;
 
@@ -128,10 +129,10 @@ architecture Behavioral of bcdclock is
     begin
         if(CLK_50'event and CLK_50='1' and SETMODE = '0') then 
             if counter<25000000 then
-                counter <= counter + 1;
+                counter <= counter + '1';
             else 
-                counter <= 0;
-                clk <= not clk;
+                counter <=(others => '0');
+                clk_sec <= not clk_sec;
             end if;
         end if;
     end process;
@@ -140,9 +141,9 @@ architecture Behavioral of bcdclock is
     begin
         if rising_edge(clk_sec) then
             if second < 59 then
-                second <= second + 1;
+                second <= second + '1';
             else 
-                second <= 0;
+                second <= (others => '0');
                 clk_min <= not clk_min;
             end if;
         end if;
@@ -152,9 +153,9 @@ architecture Behavioral of bcdclock is
     begin
         if rising_edge(clk_min) then
             if minute < 59 then
-                minute <= minute + 1;
+                minute <= minute + '1';
             else 
-                minute <= 0;
+                minute <= (others => '0');
                 clk_hour <= not clk_hour;
             end if;
         end if;
@@ -164,9 +165,9 @@ architecture Behavioral of bcdclock is
     begin
         if rising_edge(clk_hour) then
             if hour < 12 then
-                minute <= minute + 1;
+                hour <= hour + '1';
             else 
-                hour <= 1;
+                hour <= "0001";
             end if;
         end if;
     end process;
