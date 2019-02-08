@@ -144,7 +144,7 @@ architecture Behavioral of bcdclock is
             else 
                 second <= 0;
                 clk_min <= not clk_min;
-            end if
+            end if;
         end if;
     end process;
 
@@ -156,7 +156,7 @@ architecture Behavioral of bcdclock is
             else 
                 minute <= 0;
                 clk_hour <= not clk_hour;
-            end if
+            end if;
         end if;
     end process;
 
@@ -167,7 +167,7 @@ architecture Behavioral of bcdclock is
                 minute <= minute + 1;
             else 
                 hour <= 1;
-            end if
+            end if;
         end if;
     end process;
 
@@ -195,7 +195,7 @@ architecture Behavioral of bcdclock is
             clk_sec <= UPSEC;
             clk_min <= UPMIN;
             clk_hour <= UPHOUR;
-        end_if;
+        end if;
     end process;
 
 end Behavioral;
