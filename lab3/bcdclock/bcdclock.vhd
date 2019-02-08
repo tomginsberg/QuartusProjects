@@ -127,7 +127,12 @@ architecture Behavioral of bcdclock is
 					when others => return "00000000";
             end case;
         end;
+    
+    clk_sec_master <= clk_sec when (SETMODE = '0') else UPSEC;
+    clk_min_master <= clk_sec when (SETMODE = '0') else UPMIN;
+    clk_hour_master <= clk_sec when (SETMODE = '0') else UPHOUR;
 
+    
     begin 
     process(CLK_50, SETMODE, counter, clk_sec)
     begin
@@ -141,12 +146,12 @@ architecture Behavioral of bcdclock is
         end if;
     end process;
     
-    process(clk_sec, second, clk_min, SETMODE, UPSEC, clk_sec_master)
+    process(clk_sec_master, second, clk_min, SETMODE, UPSEC, clk_sec_master)
     begin
 
         --clk_sec_master <= UPSEC when (SETMODE = '1') else clk_sec;
 
-        if rising_edge(clk_sec) then
+        if rising_edge(clk_sec_master) then
 
             if second < 59 then
                 second <= second + '1';
@@ -157,9 +162,9 @@ architecture Behavioral of bcdclock is
         end if;
     end process;
 
-    process(clk_min, minute, clk_hour, SETMODE, UPMIN)
+    process(clk_min_master, minute, clk_hour, SETMODE, UPMIN)
     begin
-        if rising_edge(clk_min) then
+        if rising_edge(clk_min_master) then
             if minute < 59 then
                 minute <= minute + '1';
             else 
@@ -169,9 +174,9 @@ architecture Behavioral of bcdclock is
         end if;
     end process;
 
-    process(hour, clk_hour, SETMODE, UPHOUR)
+    process(hour, clk_hour_master, SETMODE, UPHOUR)
     begin
-        if rising_edge(clk_hour) then
+        if rising_edge(clk_hour_master) then
             if hour < 12 then
                 hour <= hour + '1';
             else 
