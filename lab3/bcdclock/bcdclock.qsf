@@ -104,4 +104,4 @@ set_location_assignment PIN_U7 -to UPSEC
 set_location_assignment PIN_W9 -to UPMIN
 set_location_assignment PIN_M7 -to UPHOUR
 set_location_assignment PIN_U13 -to SETMODE
-set_location_assignment PIN_M9 -to CLK_50
+set_location_assignment PIN_M9 -to CLK_50set_location_assignment PIN_U21 -to SEC0[6]

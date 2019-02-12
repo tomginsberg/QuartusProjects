@@ -15,5 +15,5 @@ def bcd(dec):
         s = "0"+s
     return binn(int(s[0]),4)+binn(int(s[1]),4)
 
-for i in range(60):
-    print(template.format(binn(i,6),bcd(i)))
+for i in range(100):
+    print(template.format(binn(i,8),bcd(i)))

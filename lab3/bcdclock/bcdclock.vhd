@@ -124,7 +124,7 @@ architecture Behavioral of bcdclock is
                 when "111001" => return "01010111";
                 when "111010" => return "01011000";
                 when "111011" => return "01011001";
-					when others => return "00000000";
+				when others => return "00000000";
             end case;
         end;
     
@@ -144,6 +144,7 @@ architecture Behavioral of bcdclock is
                 clk_sec <= not clk_sec;
             end if;
         end if;
+
     end process;
     
     process(clk_sec_master, second, clk_min, SETMODE, UPSEC, clk_sec_master)
