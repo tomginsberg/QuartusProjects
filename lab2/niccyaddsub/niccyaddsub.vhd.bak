@@ -1,0 +1,16 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+entity binary_4_bit_adder3_top is
+    Port ( NUM1 : in  STD_LOGIC_VECTOR (3 downto 0);    -- 4-bit number
+           NUM2 : in  STD_LOGIC_VECTOR (3 downto 0);    -- 4-bit number
+           SUM : out  STD_LOGIC_VECTOR (4 downto 0));   -- 5 bit result
+end binary_4_bit_adder3_top;
+
+architecture Behavioral of binary_4_bit_adder3_top is
+begin
+
+    SUM <= ('0' & NUM1) + ('0' & NUM2);
+
+end Behavioral

@@ -127,16 +127,14 @@ architecture Behavioral of bcdclock is
 				when others => return "00000000";
             end case;
         end;
-    
+    begin
     clk_sec_master <= clk_sec when (SETMODE = '0') else UPSEC;
     clk_min_master <= clk_sec when (SETMODE = '0') else UPMIN;
     clk_hour_master <= clk_sec when (SETMODE = '0') else UPHOUR;
-
     
-    begin 
     process(CLK_50, SETMODE, counter, clk_sec)
     begin
-        if(CLK_50'event and CLK_50='1' and SETMODE = '0') then 
+        if rising_edge(CLK_50) then 
             if counter<25000000 then
                 counter <= counter + '1';
             else 

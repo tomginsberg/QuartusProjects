@@ -1,5 +1,5 @@
 Analysis & Synthesis report for bcdclock
-Thu Feb 07 17:58:50 2019
+Fri Feb 22 19:19:27 2019
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -43,13 +43,13 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Thu Feb 07 17:58:50 2019       ;
+; Analysis & Synthesis Status     ; Successful - Fri Feb 22 19:19:26 2019       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; bcdclock                                    ;
 ; Top-level Entity Name           ; bcdclock                                    ;
 ; Family                          ; Cyclone V                                   ;
 ; Logic utilization (in ALMs)     ; N/A                                         ;
-; Total registers                 ; 48                                          ;
+; Total registers                 ; 46                                          ;
 ; Total pins                      ; 47                                          ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 0                                           ;
@@ -163,7 +163,7 @@ refer to the applicable agreement for further details.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.0%      ;
+;     Processor 2            ;   0.1%      ;
 +----------------------------+-------------+
 
 
@@ -176,31 +176,31 @@ refer to the applicable agreement for further details.
 +----------------------------------+-----------------+-----------------+-----------------------------------------------+---------+
 
 
-+-------------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary                 ;
-+---------------------------------------------+---------------+
-; Resource                                    ; Usage         ;
-+---------------------------------------------+---------------+
-; Estimate of Logic utilization (ALMs needed) ; 59            ;
-;                                             ;               ;
-; Combinational ALUT usage for logic          ; 106           ;
-;     -- 7 input functions                    ; 0             ;
-;     -- 6 input functions                    ; 12            ;
-;     -- 5 input functions                    ; 16            ;
-;     -- 4 input functions                    ; 32            ;
-;     -- <=3 input functions                  ; 46            ;
-;                                             ;               ;
-; Dedicated logic registers                   ; 48            ;
-;                                             ;               ;
-; I/O pins                                    ; 47            ;
-;                                             ;               ;
-; Total DSP Blocks                            ; 0             ;
-;                                             ;               ;
-; Maximum fan-out node                        ; SETMODE~input ;
-; Maximum fan-out                             ; 30            ;
-; Total fan-out                               ; 628           ;
-; Average fan-out                             ; 2.53          ;
-+---------------------------------------------+---------------+
++------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                ;
++---------------------------------------------+--------------+
+; Resource                                    ; Usage        ;
++---------------------------------------------+--------------+
+; Estimate of Logic utilization (ALMs needed) ; 58           ;
+;                                             ;              ;
+; Combinational ALUT usage for logic          ; 106          ;
+;     -- 7 input functions                    ; 0            ;
+;     -- 6 input functions                    ; 10           ;
+;     -- 5 input functions                    ; 16           ;
+;     -- 4 input functions                    ; 33           ;
+;     -- <=3 input functions                  ; 47           ;
+;                                             ;              ;
+; Dedicated logic registers                   ; 46           ;
+;                                             ;              ;
+; I/O pins                                    ; 47           ;
+;                                             ;              ;
+; Total DSP Blocks                            ; 0            ;
+;                                             ;              ;
+; Maximum fan-out node                        ; CLK_50~input ;
+; Maximum fan-out                             ; 30           ;
+; Total fan-out                               ; 590          ;
+; Average fan-out                             ; 2.40         ;
++---------------------------------------------+--------------+
 
 
 +----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -208,7 +208,7 @@ refer to the applicable agreement for further details.
 +----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+-------------+--------------+
 ; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name ; Entity Name ; Library Name ;
 +----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+-------------+--------------+
-; |bcdclock                  ; 106 (106)           ; 48 (48)                   ; 0                 ; 0          ; 47   ; 0            ; |bcdclock           ; bcdclock    ; work         ;
+; |bcdclock                  ; 106 (106)           ; 46 (46)                   ; 0                 ; 0          ; 47   ; 0            ; |bcdclock           ; bcdclock    ; work         ;
 +----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+-------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -218,12 +218,12 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 48    ;
+; Total registers                              ; 46    ;
 ; Number of registers using Synchronous Clear  ; 29    ;
 ; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 29    ;
+; Number of registers using Clock Enable       ; 0     ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -244,23 +244,23 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 48                          ;
-;     ENA SCLR          ; 29                          ;
-;     plain             ; 19                          ;
+; arriav_ff             ; 46                          ;
+;     SCLR              ; 29                          ;
+;     plain             ; 17                          ;
 ; arriav_lcell_comb     ; 111                         ;
 ;     arith             ; 29                          ;
 ;         1 data inputs ; 29                          ;
 ;     normal            ; 82                          ;
 ;         0 data inputs ; 2                           ;
 ;         1 data inputs ; 3                           ;
-;         3 data inputs ; 17                          ;
-;         4 data inputs ; 32                          ;
+;         3 data inputs ; 18                          ;
+;         4 data inputs ; 33                          ;
 ;         5 data inputs ; 16                          ;
-;         6 data inputs ; 12                          ;
+;         6 data inputs ; 10                          ;
 ; boundary_port         ; 47                          ;
 ;                       ;                             ;
 ; Max LUT depth         ; 3.80                        ;
-; Average LUT depth     ; 2.43                        ;
+; Average LUT depth     ; 2.41                        ;
 +-----------------------+-----------------------------+
 
 
@@ -279,7 +279,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Thu Feb 07 17:58:16 2019
+    Info: Processing started: Fri Feb 22 19:18:55 2019
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off bcdclock -c bcdclock
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
@@ -287,25 +287,51 @@ Info (12021): Found 2 design units, including 1 entities, in source file bcdcloc
     Info (12022): Found design unit 1: bcdclock-Behavioral File: C:/QuartusProjects/lab3/bcdclock/bcdclock.vhd Line: 14
     Info (12023): Found entity 1: bcdclock File: C:/QuartusProjects/lab3/bcdclock/bcdclock.vhd Line: 6
 Info (12127): Elaborating entity "bcdclock" for the top level hierarchy
+Warning (10812): VHDL warning at bcdclock.vhd(148): sensitivity list already contains clk_sec_master File: C:/QuartusProjects/lab3/bcdclock/bcdclock.vhd Line: 148
+Warning (19016): Clock multiplexers are found and protected
+    Warning (19017): Found clock multiplexer clk_min_master File: C:/QuartusProjects/lab3/bcdclock/bcdclock.vhd Line: 20
+    Warning (19017): Found clock multiplexer clk_hour_master File: C:/QuartusProjects/lab3/bcdclock/bcdclock.vhd Line: 21
+    Warning (19017): Found clock multiplexer clk_sec_master File: C:/QuartusProjects/lab3/bcdclock/bcdclock.vhd Line: 19
 Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "HOUR1[0]" is stuck at VCC File: C:/QuartusProjects/lab3/bcdclock/bcdclock.vhd Line: 9
     Warning (13410): Pin "HOUR1[4]" is stuck at GND File: C:/QuartusProjects/lab3/bcdclock/bcdclock.vhd Line: 9
     Warning (13410): Pin "HOUR1[5]" is stuck at GND File: C:/QuartusProjects/lab3/bcdclock/bcdclock.vhd Line: 9
 Info (286030): Timing-Driven Synthesis is running
+Warning (20013): Ignored 24 assignments for entity "bcdaddsub" -- entity does not exist in design
+    Warning (20014): Assignment for entity set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -entity bcdaddsub -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -entity bcdaddsub -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -entity bcdaddsub -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_PRESERVE_HIGH_SPEED_TILES ON -entity bcdaddsub -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IGNORE_SOURCE_FILE_CHANGES OFF -entity bcdaddsub -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_ALWAYS_USE_QXP_NETLIST OFF -entity bcdaddsub -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_COLOR 16764057 -entity bcdaddsub -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IMPORT_ASSIGNMENTS ON -entity bcdaddsub -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IMPORT_EXISTING_ASSIGNMENTS REPLACE_CONFLICTING -entity bcdaddsub -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IMPORT_EXISTING_LOGICLOCK_REGIONS UPDATE_CONFLICTING -entity bcdaddsub -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IMPORT_PIN_ASSIGNMENTS ON -entity bcdaddsub -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IMPORT_PROMOTE_ASSIGNMENTS ON -entity bcdaddsub -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_TYPE STANDARD_PARTITION -entity bcdaddsub -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name ALLOW_MULTIPLE_PERSONAS OFF -entity bcdaddsub -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_ASD_REGION_ID 1 -entity bcdaddsub -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name CROSS_BOUNDARY_OPTIMIZATIONS OFF -entity bcdaddsub -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PROPAGATE_CONSTANTS_ON_INPUTS ON -entity bcdaddsub -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PROPAGATE_INVERSIONS_ON_INPUTS ON -entity bcdaddsub -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name REMOVE_LOGIC_ON_UNCONNECTED_OUTPUTS ON -entity bcdaddsub -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name MERGE_EQUIVALENT_INPUTS ON -entity bcdaddsub -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name MERGE_EQUIVALENT_BIDIRS ON -entity bcdaddsub -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name ABSORB_PATHS_FROM_OUTPUTS_TO_INPUTS ON -entity bcdaddsub -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_EXTRACT_HARD_BLOCK_NODES ON -entity bcdaddsub -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_ENABLE_STRICT_PRESERVATION OFF -entity bcdaddsub -section_id Top was ignored
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 3 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "UPSEC" File: C:/QuartusProjects/lab3/bcdclock/bcdclock.vhd Line: 8
-    Warning (15610): No output dependent on input pin "UPMIN" File: C:/QuartusProjects/lab3/bcdclock/bcdclock.vhd Line: 8
-    Warning (15610): No output dependent on input pin "UPHOUR" File: C:/QuartusProjects/lab3/bcdclock/bcdclock.vhd Line: 8
 Info (21057): Implemented 153 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 5 input pins
     Info (21059): Implemented 42 output pins
     Info (21061): Implemented 106 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 9 warnings
-    Info: Peak virtual memory: 778 megabytes
-    Info: Processing ended: Thu Feb 07 17:58:50 2019
-    Info: Elapsed time: 00:00:34
-    Info: Total CPU time (on all processors): 00:00:51
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 35 warnings
+    Info: Peak virtual memory: 777 megabytes
+    Info: Processing ended: Fri Feb 22 19:19:27 2019
+    Info: Elapsed time: 00:00:32
+    Info: Total CPU time (on all processors): 00:00:55
 
 

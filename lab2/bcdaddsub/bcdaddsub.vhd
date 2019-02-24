@@ -119,7 +119,7 @@ architecture a of bcdaddsub is
             bcd10 <= NUMIN(3 downto 0);
             bcd11 <= NUMIN(7 downto 4);
         end if;
-        if 
+        
         SEG2 <= bcdToSeven(bcd10);
         SEG3 <= bcdToSeven(bcd11);
         
