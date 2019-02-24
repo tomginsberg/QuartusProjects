@@ -128,15 +128,13 @@ architecture Behavioral of bcdclock is
             end case;
         end;
     
-    clk_sec_master <= clk_sec when (SETMODE = '0') else UPSEC;
-    clk_min_master <= clk_sec when (SETMODE = '0') else UPMIN;
-    clk_hour_master <= clk_sec when (SETMODE = '0') else UPHOUR;
-
-    
     begin 
+    clk_sec_master <= clk_sec when (SETMODE = '0') else not UPSEC;
+    clk_min_master <= clk_min when (SETMODE = '0') else not UPMIN;
+    clk_hour_master <= clk_hour when (SETMODE = '0') else not UPHOUR;
     process(CLK_50, SETMODE, counter, clk_sec)
     begin
-        if(CLK_50'event and CLK_50='1' and SETMODE = '0') then 
+        if(CLK_50'event and CLK_50='1') then 
             if counter<25000000 then
                 counter <= counter + '1';
             else 
@@ -156,9 +154,12 @@ architecture Behavioral of bcdclock is
 
             if second < 59 then
                 second <= second + '1';
+					 if second = 58 then
+						 clk_min <= '0';
+					 end if;
             else 
                 second <= (others => '0');
-                clk_min <= not clk_min;
+                clk_min <= '1';
             end if;
         end if;
     end process;
@@ -168,9 +169,12 @@ architecture Behavioral of bcdclock is
         if rising_edge(clk_min_master) then
             if minute < 59 then
                 minute <= minute + '1';
+					 if minute = 58 then 
+						clk_hour <= '0';
+					 end if;
             else 
                 minute <= (others => '0');
-                clk_hour <= not clk_hour;
+                clk_hour <= '1';
             end if;
         end if;
     end process;

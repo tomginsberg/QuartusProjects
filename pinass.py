@@ -2,10 +2,10 @@ import glob
 from functools import reduce
 
 #set ypurt mapping of which displays map to which output varibale names in your code
-variable_names = {0:"LED0",1:"LED1",2:"LED2",3:"LED3",4:"LED4",5:"LED5"}
+variable_names = {0:"SEG0",1:"SEG1",2:"SEG2",3:"SEG3",4:"SEG4",5:"SEG5"}
 
 #set the directory of your project
-path_name = "lab3/bcdclock/"
+path_name = "lab2/bcdaddsub/"
 
 
 
