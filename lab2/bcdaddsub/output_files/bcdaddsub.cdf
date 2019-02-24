@@ -3,8 +3,8 @@ JedecChain;
 	FileRevision(JESD32A);
 	DefaultMfr(6E);
 
-	P ActionCode(Ign)
-		Device PartName(5CEBA2F17) MfrSpec(OpMask(0) FullPath("C:/QuartusProjects/lab2/bcdaddsub/output_files/bcdaddsub.sof"));
+	P ActionCode(Cfg)
+		Device PartName(5CEBA4F23) Path("C:/QuartusProjects/lab2/bcdaddsub/output_files/") File("bcdaddsub.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 
