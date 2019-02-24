@@ -132,9 +132,9 @@ architecture Behavioral of bcdclock is
     clk_sec_master <= clk_sec when (SETMODE = '0') else not UPSEC;
     clk_min_master <= clk_min when (SETMODE = '0') else not UPMIN;
     clk_hour_master <= clk_hour when (SETMODE = '0') else not UPHOUR;
-    process(CLK_50, SETMODE, counter, clk_sec)
+    process(CLK_50, SETMODE)
     begin
-        if(CLK_50'event and CLK_50='1') then 
+        if(CLK_50'event and CLK_50='1' and SETMODE = '0') then 
             if counter<25000000 then
                 counter <= counter + '1';
             else 
@@ -145,7 +145,7 @@ architecture Behavioral of bcdclock is
 
     end process;
     
-    process(clk_sec_master, second, clk_min, SETMODE, UPSEC, clk_sec_master)
+    process(clk_sec_master)
     begin
 
         --clk_sec_master <= UPSEC when (SETMODE = '1') else clk_sec;
@@ -164,7 +164,7 @@ architecture Behavioral of bcdclock is
         end if;
     end process;
 
-    process(clk_min_master, minute, clk_hour, SETMODE, UPMIN)
+    process(clk_min_master)
     begin
         if rising_edge(clk_min_master) then
             if minute < 59 then
@@ -179,7 +179,7 @@ architecture Behavioral of bcdclock is
         end if;
     end process;
 
-    process(hour, clk_hour_master, SETMODE, UPHOUR)
+    process(hour, clk_hour_master)
     begin
         if rising_edge(clk_hour_master) then
             if hour < 12 then
@@ -190,7 +190,7 @@ architecture Behavioral of bcdclock is
         end if;
     end process;
 
-    process(second, minute, hour, secbcd, minbcd, hourbcd)
+    process(second, minute, hour)
     begin
         secbcd <= sixBitToBCD(second);
         minbcd <= sixBitToBCD(minute);
