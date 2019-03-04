@@ -1,0 +1,20 @@
+Fitter Status : Successful - Sat Feb 20 19:50:42 2016
+Quartus Prime Version : 15.1.0 Build 185 10/21/2015 SJ Lite Edition
+Revision Name : PSM
+Top-level Entity Name : PSM
+Family : Cyclone V
+Device : 5CEFA4F23C7
+Timing Models : Final
+Logic utilization (in ALMs) : 26 / 18,480 ( < 1 % )
+Total registers : 41
+Total pins : 20 / 224 ( 9 % )
+Total virtual pins : 0
+Total block memory bits : 256 / 3,153,920 ( < 1 % )
+Total RAM Blocks : 1 / 308 ( < 1 % )
+Total DSP Blocks : 0 / 66 ( 0 % )
+Total HSSI RX PCSs : 0
+Total HSSI PMA RX Deserializers : 0
+Total HSSI TX PCSs : 0
+Total HSSI PMA TX Serializers : 0
+Total PLLs : 0 / 4 ( 0 % )
+Total DLLs : 0 / 4 ( 0 % )
